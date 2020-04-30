@@ -1,9 +1,12 @@
 apiVersion: apps/v1
+
 kind: Deployment
+
 metadata:
   name: worker-app-deployment
   labels:
     app: demo-voting-app
+
 spec:
   replicas: 1
   selector:
@@ -12,10 +15,10 @@ spec:
       app: demo-voting-app
   template:
     metadata:
-    name: worker-app-pod
-    labels:
       name: worker-app-pod
-      app: demo-voting-app
+      labels:
+        name: worker-app-pod
+        app: demo-voting-app
 
   spec:
     containers:

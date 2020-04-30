@@ -11,7 +11,7 @@ spec:
       name: postgres-pod
       app: demo-voting-app
   template:
-    matadata:
+    metadata:
       name: postgres-pod    # this is not the same in service, because app config file look for this as DB
       labels:
         name: postgres-pod
