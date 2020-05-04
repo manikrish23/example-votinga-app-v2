@@ -1,0 +1,22 @@
+ster $ kubectl get replicaset -n namespace
+No resources found in namespace namespace.
+master $ kubectl get replicaset -n default
+No resources found in default namespace.
+master $ kubectl get replicaset
+NAME              DESIRED   CURRENT   READY   AGE
+new-replica-set   4         4         0       21s
+master $ kubectl get pods
+NAME                    READY   STATUS             RESTARTS   AGE
+new-replica-set-8dvwm   0/1     ErrImagePull       0          47s
+new-replica-set-8q496   0/1     ErrImagePull       0          47s
+new-replica-set-wr97k   0/1     ImagePullBackOff   0          47s
+new-replica-set-xjdcw   0/1     ImagePullBackOff   0          47s
+master $ kubectl describe pods new-replica-set-8dvwm
+Name:         new-replica-set-8dvwm
+Namespace:    default
+Priority:     0
+Node:         node01/172.17.0.54
+Start Time:   Mon, 27 Apr 2020 14:58:50 +0000
+Labels:       name=busybox-pod
+Annotations:  <none>
+Status:       Pending

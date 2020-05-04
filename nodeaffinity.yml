@@ -1,0 +1,39 @@
+# First label the nodes : kubectl label nodes node01 size=Large
+
+#then in pod
+
+apiVersion: v1
+kind : pod
+metadata:
+  name: nginx001
+  lables:
+    app: nginx01
+spec:
+  containers:
+    - name: nginx-001
+      image: nginx
+  affinity:
+    nodeaffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExperssions:
+              - key: size
+                operator: In
+                values:
+                  - Large
+
+# affinity for preferredDuringScheduleingIgnoredDuringExecution
+
+affinity:
+  nodeAffinity:
+    preferredDuringScheduleingIgnoredDuringExecution:
+      - weight: 100
+        preference:
+          matchExperssions:
+            - key: size
+              operator: In
+              values:
+                - Large
+
+
+

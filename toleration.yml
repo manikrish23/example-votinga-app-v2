@@ -1,0 +1,21 @@
+#kubectl taint nodes node01 key=tvalue:NoSchedule -> this needs to run at the node
+
+#taint has to be part of the node and to place restriction on nodes - values to be added in pod definition under containers
+
+apiVersion: v1
+kind : pod
+metadata:
+  name: nginx001
+  lables:
+    app: nginx01
+spec:
+  containers:
+    - name: nginx-001
+      image: nginx
+  tolerations:
+    - key: "key"
+      operator: "Equals"
+      value: "tvalue"
+      effect: "NoSchedule"
+      #tolerationSeconds: 3600 - then the pod will stay bound to the node for 3600 seconds, and then be evicted
+      
